@@ -86,6 +86,17 @@
     </div>
 
     <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
+    <!-- Product description modal (hidden by default) -->
+    <div id="productModal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" tabindex="-1"></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" aria-label="Close description">&times;</button>
+        <h3 id="modalTitle">Product Title</h3>
+        <div id="modalDescription" class="modal-body">Product description goes here.</div>
+        <div id="modalMeta" class="modal-meta"></div>
+      </div>
+    </div>
+
     <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
