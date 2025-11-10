@@ -25,17 +25,14 @@
 
       <!-- Category Filter -->
       <div class="search-section">
+        <input
+          id="productSearch"
+          type="search"
+          placeholder="Search products by name or keyword…"
+          aria-label="Search products"
+        />
         <select id="categoryFilter">
           <option value="" disabled selected>Choose a Category</option>
-          <option value="cleanser">Cleansers</option>
-          <option value="moisturizer">Moisturizers & Treatments</option>
-          <option value="haircare">Haircare</option>
-          <option value="makeup">Makeup</option>
-          <option value="hair color">Hair Color</option>
-          <option value="hair styling">Hair Styling</option>
-          <option value="men's grooming">Men's Grooming</option>
-          <option value="suncare">Suncare</option>
-          <option value="fragrance">Fragrance</option>
         </select>
       </div>
 
@@ -46,6 +43,15 @@
       <div class="selected-products">
         <h2>Selected Products</h2>
         <div id="selectedProductsList"></div>
+        <div style="margin-top: 12px; display: flex; gap: 8px">
+          <button
+            id="clearSelections"
+            class="generate-btn"
+            style="background: #d9534f"
+          >
+            Clear selections
+          </button>
+        </div>
         <button id="generateRoutine" class="generate-btn">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
         </button>
@@ -55,6 +61,10 @@
       <section class="chatbox">
         <h2>Let's Build Your Routine</h2>
         <div id="chatWindow" class="chat-window"></div>
+        <!-- small restart button placed in the chat corner (styled via CSS) -->
+        <button id="restartChat" class="restart-btn" aria-label="Restart chat">
+          ⟲
+        </button>
 
         <form id="chatForm" class="chat-form">
           <label for="userInput" class="visually-hidden">Message</label>
@@ -89,10 +99,19 @@
     <!-- Product description modal (hidden by default) -->
     <div id="productModal" class="modal" aria-hidden="true">
       <div class="modal-backdrop" tabindex="-1"></div>
-      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" aria-label="Close description">&times;</button>
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button class="modal-close" aria-label="Close description">
+          &times;
+        </button>
         <h3 id="modalTitle">Product Title</h3>
-        <div id="modalDescription" class="modal-body">Product description goes here.</div>
+        <div id="modalDescription" class="modal-body">
+          Product description goes here.
+        </div>
         <div id="modalMeta" class="modal-meta"></div>
       </div>
     </div>

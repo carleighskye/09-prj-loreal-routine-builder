@@ -42,6 +42,19 @@ body {
   display: flex;
 }
 
+.search-section input[type="search"] {
+  flex: 1 1 60%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+.search-section input[type="search"]:focus {
+  outline: none;
+  border-color: #666;
+}
+
 .search-section select {
   width: 100%;
   padding: 16px;
@@ -66,6 +79,37 @@ body {
   padding: 26px;
 }
 
+/* make chatbox a positioned container so the corner button can be absolutely positioned */
+.chatbox {
+  position: relative;
+}
+
+/* small restart button in the chat corner */
+.restart-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+.restart-btn:hover {
+  background: #555;
+}
+.restart-btn:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
 .chatbox h2 {
   font-size: 20px;
   margin-bottom: 20px;
@@ -79,6 +123,46 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+}
+
+/* AI response styling for readability */
+.ai-response {
+  white-space: pre-wrap; /* preserve spacing and line breaks */
+  font-size: 16px;
+  line-height: 1.6;
+  color: #222;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.ai-suggestions {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: #fffdfa;
+  border: 1px solid #f0e6d6;
+  border-radius: 8px;
+}
+.ai-suggestions h4 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+}
+.ai-suggestions ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.ai-suggestions li {
+  margin-bottom: 6px;
+}
+
+.user-message {
+  background: #f1f6ff;
+  color: #0b2545;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin: 8px 0;
+  border: 1px solid #e1ecff;
 }
 
 /* placeholder message */
@@ -238,7 +322,7 @@ body {
 .product-card.selected {
   border-color: #0070f3;
   box-shadow: 0 8px 20px rgba(0, 112, 243, 0.12);
-  background: linear-gradient(180deg, rgba(0,112,243,0.03), transparent);
+  background: linear-gradient(180deg, rgba(0, 112, 243, 0.03), transparent);
 }
 
 /* Selected products list inside the Selected Products panel */
@@ -328,7 +412,7 @@ body {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .modal-content {
@@ -338,7 +422,7 @@ body {
   border-radius: 10px;
   max-width: 620px;
   width: 92%;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
   z-index: 1210;
 }
 
@@ -364,4 +448,80 @@ body {
   margin-top: 14px;
   color: #666;
   font-size: 14px;
+}
+
+/* RTL support: when document root or body has dir="rtl" */
+html[dir="rtl"],
+body[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] .search-section,
+body[dir="rtl"] .search-section {
+  /* reverse input/select order visually */
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .search-section input[type="search"],
+body[dir="rtl"] .search-section input[type="search"] {
+  margin-right: 0;
+  margin-left: 12px;
+  text-align: right;
+}
+
+/* flip product grid flow and product card layout */
+html[dir="rtl"] .products-grid,
+body[dir="rtl"] .products-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .product-card,
+body[dir="rtl"] .product-card {
+  flex-direction: row-reverse; /* image on the right */
+}
+
+html[dir="rtl"] .product-card .product-info,
+body[dir="rtl"] .product-card .product-info {
+  text-align: right;
+}
+
+/* selected products list flow */
+html[dir="rtl"] #selectedProductsList,
+body[dir="rtl"] #selectedProductsList {
+  flex-direction: row-reverse;
+}
+
+/* chatbox and messages alignment */
+html[dir="rtl"] .chatbox,
+body[dir="rtl"] .chatbox {
+  text-align: right;
+}
+
+html[dir="rtl"] .chat-form,
+body[dir="rtl"] .chat-form {
+  flex-direction: row-reverse; /* input on right, send button on left */
+}
+
+html[dir="rtl"] .chat-form input,
+body[dir="rtl"] .chat-form input {
+  text-align: right;
+}
+
+/* place restart button on the left in RTL */
+html[dir="rtl"] .restart-btn,
+body[dir="rtl"] .restart-btn {
+  right: auto;
+  left: 12px;
+}
+
+/* user message bubble alignment in RTL */
+html[dir="rtl"] .user-message,
+body[dir="rtl"] .user-message {
+  text-align: right;
+}
+
+/* ensure modal content stays LTR if needed for code blocks, but default text should follow direction */
+html[dir="rtl"] .modal-content,
+body[dir="rtl"] .modal-content {
+  direction: rtl;
 }
