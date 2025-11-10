@@ -415,6 +415,8 @@ function toggleCardSelection(card) {
   }
 
   renderSelectedProductsList();
+  // persist selection changes so they survive page reloads
+  saveSelectedToLocalStorage();
 }
 
 function renderSelectedProductsList() {
@@ -461,6 +463,8 @@ function unselectById(id) {
   if (card) card.classList.remove("selected");
 
   renderSelectedProductsList();
+  // persist after removal
+  saveSelectedToLocalStorage();
 }
 
 /* Combined filter: category + search. Shows placeholder if no filters are active. */
