@@ -13,6 +13,14 @@ body {
   justify-content: center;
 }
 
+/* Theme colors */
+:root {
+  --accent: #ff003b; /* primary */
+  --accent-2: #e3a535; /* secondary */
+  --accent-dark: #e60036;
+  --accent2-dark: #c8922e;
+}
+
 .page-wrapper {
   width: 90%;
   max-width: 900px;
@@ -59,7 +67,7 @@ body {
   width: 100%;
   padding: 16px;
   font-size: 18px;
-  border: 2px solid #000;
+  border: 2px solid var(--accent-2);
   border-radius: 8px;
   cursor: pointer;
   background-color: white;
@@ -77,11 +85,12 @@ body {
   border: 2px solid #000;
   border-radius: 8px;
   padding: 26px;
-}
-
-/* make chatbox a positioned container so the corner button can be absolutely positioned */
-.chatbox {
+  /* make chatbox a positioned container so the corner button can be absolutely positioned */
   position: relative;
+  /* make chatbox a fixed-size panel and use flex so the chat window can scroll */
+  display: flex;
+  flex-direction: column;
+  height: 420px;
 }
 
 /* small restart button in the chat corner */
@@ -95,7 +104,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #6c757d;
+  background: var(--accent-2);
   color: #fff;
   border: none;
   font-size: 16px;
@@ -103,26 +112,18 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 .restart-btn:hover {
-  background: #555;
-}
-.restart-btn:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
+  background: var(--accent2-dark);
 }
 
-.chatbox h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
+/* chat window: fill available space and be scrollable so users can view past chats */
 .chat-window {
   padding: 20px;
   font-size: 18px;
   line-height: 1.5;
-  height: 250px;
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+  flex: 1 1 auto; /* fill available space inside .chatbox */
 }
 
 /* AI response styling for readability */
@@ -197,7 +198,7 @@ body {
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
+  background: var(--accent);
   color: #fff;
   border: none;
   padding: 12px;
@@ -211,7 +212,7 @@ body {
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: var(--accent-dark);
 }
 
 .chat-form button:focus {
@@ -246,7 +247,7 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: #000;
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -307,7 +308,7 @@ body {
 .details-btn {
   padding: 8px 10px;
   font-size: 14px;
-  background: #0070f3;
+  background: var(--accent-2);
   color: white;
   border: none;
   border-radius: 6px;
@@ -315,14 +316,14 @@ body {
 }
 
 .details-btn:hover {
-  background: #005bd8;
+  background: var(--accent2-dark);
 }
 
 /* Selected state for product cards (visual highlight) */
 .product-card.selected {
-  border-color: #0070f3;
-  box-shadow: 0 8px 20px rgba(0, 112, 243, 0.12);
-  background: linear-gradient(180deg, rgba(0, 112, 243, 0.03), transparent);
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(255, 0, 59, 0.12);
+  background: linear-gradient(180deg, rgba(255, 0, 59, 0.03), transparent);
 }
 
 /* Selected products list inside the Selected Products panel */
@@ -360,6 +361,8 @@ body {
   padding: 20px;
   border: 2px solid #000;
   border-radius: 8px;
+  position: relative; /* for corner clear button */
+  padding-top: 36px; /* make space for the small clear button */
 }
 
 .selected-products h2 {
@@ -380,7 +383,7 @@ body {
   font-size: 18px;
   font-weight: 500;
   color: #fff;
-  background: #000;
+  background: var(--accent);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -388,7 +391,28 @@ body {
 }
 
 .generate-btn:hover {
-  background: #666;
+  background: var(--accent-dark);
+}
+
+/* Clear selections uses secondary accent to differentiate from primary action */
+#clearSelections {
+  background: var(--accent-2);
+  /* small corner button overrides (default .generate-btn styles are broad) */
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+#clearSelections:hover {
+  background: var(--accent2-dark);
 }
 
 .generate-btn i {

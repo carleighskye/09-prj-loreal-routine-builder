@@ -43,15 +43,14 @@
       <div class="selected-products">
         <h2>Selected Products</h2>
         <div id="selectedProductsList"></div>
-        <div style="margin-top: 12px; display: flex; gap: 8px">
-          <button
-            id="clearSelections"
-            class="generate-btn"
-            style="background: #d9534f"
-          >
-            Clear selections
-          </button>
-        </div>
+        <!-- small clear button placed in the top-right corner of this panel -->
+        <button
+          id="clearSelections"
+          class="generate-btn"
+          aria-label="Clear selections"
+        >
+          ✕
+        </button>
         <button id="generateRoutine" class="generate-btn">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
         </button>
